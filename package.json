@@ -4,6 +4,11 @@
   "description": "Plant a Tree web application - rent virtual trees, earn returns, plant real trees",
   "main": "index.js",
   "scripts": {
+  "dev": "vite",               
+  "build": "vite build",       
+  "preview": "vite preview",
+}
+
     "start": "node index.js"
   },
   "author": "UNKNOWN",
