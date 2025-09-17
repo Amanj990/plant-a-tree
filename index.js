@@ -6,15 +6,13 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const app = express();
-const PORT = 3000;
 const DB_PATH = path.join(__dirname, 'db', 'db.json');
 const SECRET_KEY = 'treeplant-secret-key'; // change to a strong secret
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+const PORT = process.env.PORT || 3000; // works on Render or locally
 
-
+// Middleware
 app.use(bodyParser.json());
-app.use(express.static('public')); // serve your HTML files if inside /public
+app.use(express.static('public')); // serve HTML files inside /public
 
 // ================== DATABASE HELPERS ==================
 function readDB() {
