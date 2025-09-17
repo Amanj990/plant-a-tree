@@ -4,11 +4,9 @@
   "description": "Plant a Tree web application - rent virtual trees, earn returns, plant real trees",
   "main": "index.js",
   "scripts": {
-  "dev": "vite",               
-  "build": "vite build",       
-  "preview": "vite preview",
-}
-
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "start": "node index.js"
   },
   "author": "UNKNOWN",
@@ -25,5 +23,8 @@
     "nodemailer": "^6.9.1",
     "pdfkit": "^0.13.0",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
   }
 }
