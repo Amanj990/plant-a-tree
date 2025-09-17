@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - TreePlantFund</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-white to-green-100 min-h-screen flex items-center justify-center font-sans">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-extrabold text-green-700">Create Account</h2>
+      <p class="text-gray-500 mt-2 text-sm">Join TreePlantFund and start growing your investment 🌱</p>
+    </div>
+
+    <form id="signupForm" class="space-y-5">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" id="email" placeholder="Enter your email"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" placeholder="Enter your password"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="referral" class="block text-sm font-medium text-gray-700 mb-1">Referral Code (Optional)</label>
+        <input type="text" id="referral" placeholder="Enter referral code if any"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none" />
+      </div>
+
+      <button type="submit" 
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg shadow-md transition duration-200">
+        Sign Up
+      </button>
+    </form>
+
+    <p class="text-center text-gray-500 text-sm mt-6">
+      Already have an account? 
+      <a href="login.html" class="text-green-600 hover:underline font-medium">Log in</a>
+    </p>
+    <p id="signup-error" class="text-center text-red-500 text-sm mt-2"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const referralCode = document.getElementById('referral').value.trim();
+
+      if (!username || !email || !password) {
+        return alert('All fields except referral are required.');
+      }
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password, referralCode })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          // Save JWT token
+          localStorage.setItem('token', data.token);
+          window.location.href = 'dashboard.html';
+        } else {
+          document.getElementById('signup-error').textContent = data.message || 'Registration failed.';
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById('signup-error').textContent = 'Something went wrong. Try again.';
+      }
+    });
+  </script>
+</body>
+</html>

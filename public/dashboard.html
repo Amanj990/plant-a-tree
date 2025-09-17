@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard - TreePlantFund</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+    }
+    .info {
+      margin: 10px 0;
+      padding: 10px;
+      border-left: 4px solid #2ecc71;
+      background: #ecfdf5;
+    }
+    .logout-btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px 0;
+      background: #e74c3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .logout-btn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Dashboard</h1>
+    <div class="info"><strong>Email:</strong> <span id="email"></span></div>
+    <div class="info"><strong>Balance:</strong> ₹<span id="balance"></span></div>
+    <div class="info"><strong>Total Investment:</strong> ₹<span id="investment"></span></div>
+    <div class="info"><strong>Total Returns:</strong> ₹<span id="returns"></span></div>
+    <div class="info"><strong>Referral Code:</strong> <span id="referral"></span></div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    async function loadDashboard() {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        alert("Please login first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/user/dashboard', {
+          headers: { "Authorization": "Bearer " + token }
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch dashboard data");
+        }
+
+        const data = await res.json();
+        const user = data.user;
+
+        document.getElementById("email").textContent = user.email;
+        document.getElementById("balance").textContent = user.balance;
+        document.getElementById("investment").textContent = user.totalInvestment;
+        document.getElementById("returns").textContent = user.totalReturns;
+        document.getElementById("referral").textContent = user.referralCode;
+      } catch (err) {
+        console.error("Dashboard load error:", err);
+        alert("Error loading dashboard. Please login again.");
+        logout();
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>

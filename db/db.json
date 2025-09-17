@@ -1,0 +1,113 @@
+{
+  "users": [
+    {
+      "id": "admin123",
+      "username": "admin",
+      "email": "admin@plantatree.com",
+      "password": "amanadmin123",
+      "role": "admin",
+      "balance": 999,
+      "totalInvestment": 0,
+      "totalReturns": 0,
+      "referralCode": "ADMIN01",
+      "referralEarnings": 0,
+      "updatedAt": "2025-09-15T09:50:04.514Z"
+    },
+    {
+      "id": "njkp0orxn",
+      "username": "testuser1",
+      "email": "test1@gmail.com",
+      "password": "test@123",
+      "role": "user",
+      "balance": 0,
+      "totalInvestment": 0,
+      "totalReturns": 0,
+      "referralCode": "tyh3kg",
+      "referralEarnings": 0,
+      "referredBy": null
+    },
+    {
+      "id": "zn2sjxmsr",
+      "username": "testuser2",
+      "email": "test2@gmail.com",
+      "password": "test@123",
+      "role": "user",
+      "balance": 0,
+      "totalInvestment": 0,
+      "totalReturns": 0,
+      "referralCode": "hdcohy",
+      "referralEarnings": 0,
+      "referredBy": "ADMIN01",
+      "rentals": []
+    },
+    {
+      "id": "bph5xje4s",
+      "username": "testuser3",
+      "email": "test3@gmail.com",
+      "password": "test@123",
+      "role": "user",
+      "balance": 0,
+      "totalInvestment": 0,
+      "totalReturns": 0,
+      "referralCode": "cj4tjr",
+      "referralEarnings": 0,
+      "referredBy": "ADMIN01",
+      "rentals": []
+    }
+  ],
+  "trees": [
+    {
+      "id": "marigold",
+      "name": "Marigold",
+      "price": 300,
+      "dailyReturn": 3,
+      "durationDays": 30,
+      "description": "Entry level plan - Perfect for beginners",
+      "badge": "Perfect for beginners",
+      "totalReturn": 90,
+      "image": "/images/marigold.png"
+    },
+    {
+      "id": "rose",
+      "name": "Rose",
+      "price": 500,
+      "dailyReturn": 6,
+      "durationDays": 45,
+      "description": "Popular choice - Most popular",
+      "badge": "Most popular",
+      "totalReturn": 270,
+      "image": "/images/rose.png"
+    },
+    {
+      "id": "tulsi",
+      "name": "Tulsi",
+      "price": 800,
+      "dailyReturn": 10,
+      "durationDays": 60,
+      "description": "Value option - Best value",
+      "badge": "Best value",
+      "totalReturn": 600,
+      "image": "/images/tulsi.png"
+    },
+    {
+      "id": "mango",
+      "name": "Mango",
+      "price": 1500,
+      "dailyReturn": 20,
+      "durationDays": 90,
+      "description": "Premium investment - Premium investor",
+      "badge": "Premium investor",
+      "totalReturn": 1800,
+      "image": "/images/mango.png"
+    }
+  ],
+  "rentals": [],
+  "transactions": [],
+  "referrals": [],
+  "certificates": [],
+  "settings": {
+    "minWithdrawal": 150,
+    "referralBonus": 50,
+    "adminWallet": "admin@plantatree.com"
+  }
+}
